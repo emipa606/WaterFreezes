@@ -7,6 +7,8 @@ Update of UdderlyEvelyns mod https://steamcommunity.com/sharedfiles/filedetails/
 
 
 -  Watermills should now just stop when frozen and not break down
+-  There is now a mod-option to let oceans freeze (at very low temperatures)
+-  Freezing/Thawing should now be more spread out over time, should no longer cause lag/stutter
 
 
 
@@ -90,6 +92,6 @@ water freeze ice lake river ocean salt fresh thermodynamic simulation depth thic
 -  If you have the solution for a problem, please post it to the GitHub repository.
 -  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
+ 
 
-
-[![Image](https://img.shields.io/github/v/release/emipa606/WaterFreezes?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3278128973)
+[![Image](https://img.shields.io/github/v/release/emipa606/WaterFreezes?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3278128973) | tags: water,  freeze

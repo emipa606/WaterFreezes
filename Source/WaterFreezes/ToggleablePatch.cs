@@ -38,29 +38,22 @@ public class ToggleablePatch : Attribute
                 continue;
             }
 
-            if (member is FieldInfo field)
+            switch (member)
             {
-                if (field.FieldType.GetInterfaces().Contains(iToggleablePatchType))
-                {
+                case FieldInfo field when field.FieldType.GetInterfaces().Contains(iToggleablePatchType):
                     Patches.Add((IToggleablePatch)field.GetValue(null));
-                }
-                else
-                {
+                    break;
+                case FieldInfo field:
                     ErrorLoggingMethod(
                         $"[ToggleablePatch] Field \"{field.Name}\" is marked with ToggleablePatch attribute but does not implement IToggleablePatch.");
-                }
-            }
-            else if (member is PropertyInfo property)
-            {
-                if (property.PropertyType.GetInterfaces().Contains(iToggleablePatchType))
-                {
+                    break;
+                case PropertyInfo property when property.PropertyType.GetInterfaces().Contains(iToggleablePatchType):
                     Patches.Add((IToggleablePatch)property.GetValue(null));
-                }
-                else
-                {
+                    break;
+                case PropertyInfo property:
                     ErrorLoggingMethod(
                         $"[ToggleablePatch] Property \"{property.Name}\" is marked with ToggleablePatch attribute but does not implement IToggleablePatch.");
-                }
+                    break;
             }
         }
 
@@ -205,7 +198,14 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
                     $"[ToggleablePatch] {(Name != null ? $"Applying patch \"{Name}\", patching " : "Patching ")}{TargetDescriptionString}..");
                 if (targetDef == null)
                 {
-                    targetDef = DefDatabase<T>.GetNamed(TargetDefName);
+                    targetDef = DefDatabase<T>.GetNamedSilentFail(TargetDefName);
+                }
+
+                if (targetDef == null)
+                {
+                    ToggleablePatch.MessageLoggingMethod(
+                        $"[ToggleablePatch] Skipping application of patch \"{Name}\" because {TargetDefName} cannot be found.");
+                    return;
                 }
 
                 try
