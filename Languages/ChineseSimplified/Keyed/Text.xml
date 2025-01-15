@@ -16,4 +16,7 @@
   <WFM.modVersion>已安装模块版本：{0}</WFM.modVersion>
   <WFM.oceansFreeze>海洋会结冰</WFM.oceansFreeze>
   <WFM.oceansFreezeDesc>如果温度足够低，海洋也会结冰</WFM.oceansFreezeDesc>
+  <WFM.icedepth>冰层深度 {0}</WFM.icedepth>
+  <WFM.waterdepth>水深 {0}</WFM.waterdepth>
+  <WFM.naturalwater>天然水</WFM.naturalwater>
 </LanguageData>

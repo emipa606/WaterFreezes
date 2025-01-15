@@ -16,4 +16,6 @@ Die Temperatur wird mit diesem Wert multipliziert, bevor sie in andere Berechnun
   <WFM.modVersion>Installierte Mod-Version: {0}</WFM.modVersion>
   <WFM.oceansFreeze>Ozeane können gefrieren</WFM.oceansFreeze>
   <WFM.oceansFreezeDesc>Wenn die Temperatur niedrig genug ist, kann auch das Meer gefrieren</WFM.oceansFreezeDesc>
+  <WFM.icedepth>Eistiefe {0}</WFM.icedepth>
+  <WFM.waterdepth>Wassertiefe {0}</WFM.waterdepth>
 </LanguageData>

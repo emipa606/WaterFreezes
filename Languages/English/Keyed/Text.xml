@@ -12,6 +12,9 @@ The temperature is multiplied by this value before going into other calculations
   <WFM.freezingFactor>Freezing Factor</WFM.freezingFactor>
   <WFM.freezingFactorDesc>The (negated) temperature is divided by this value before going into other calculations to produce the amount of thawing that occurs above freezing.</WFM.freezingFactorDesc>
   <WFM.thawingFactor>Thawing Factor</WFM.thawingFactor>
+  <WFM.icedepth>Ice depth {0}</WFM.icedepth>
+  <WFM.waterdepth>Water depth {0}</WFM.waterdepth>
+  <WFM.naturalwater>Natural Water</WFM.naturalwater>
   <WFM.moisturePump>Moisture Pump Clears Natural Water</WFM.moisturePump>
   <WFM.moisturePumpDesc>If enabled, using a moisture pump will prevent water you pumped from refilling. I recommend using Soil Relocation Framework's water filling instead!</WFM.moisturePumpDesc>
   <WFM.modVersion>Installed mod-version: {0}</WFM.modVersion>
