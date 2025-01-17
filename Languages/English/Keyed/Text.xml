@@ -15,6 +15,7 @@ The temperature is multiplied by this value before going into other calculations
   <WFM.icedepth>Ice depth {0}</WFM.icedepth>
   <WFM.waterdepth>Water depth {0}</WFM.waterdepth>
   <WFM.naturalwater>Natural Water</WFM.naturalwater>
+  <WFM.frozen>Frozen, cannot fish</WFM.frozen>
   <WFM.moisturePump>Moisture Pump Clears Natural Water</WFM.moisturePump>
   <WFM.moisturePumpDesc>If enabled, using a moisture pump will prevent water you pumped from refilling. I recommend using Soil Relocation Framework's water filling instead!</WFM.moisturePumpDesc>
   <WFM.modVersion>Installed mod-version: {0}</WFM.modVersion>

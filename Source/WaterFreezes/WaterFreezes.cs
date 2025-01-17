@@ -3,6 +3,7 @@ using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
+using WF.Harmony_Patches;
 
 namespace WF;
 
@@ -54,7 +55,18 @@ public static class WaterFreezes
         var harmony = new Harmony("UdderlyEvelyn.WaterFreezes");
         harmony.PatchAll();
         WaterFreezesStatCache.Initialize();
+        if (!ModLister.HasActiveModWithName("Vanilla Fishing Expanded"))
+        {
+            return;
+        }
+
+        Log("Adding compatibility for Vanilla Fishing Expanded");
+        harmony.Patch(AccessTools.Method("VCE_Fishing.Zone_Fishing:get_AllowFishing"), postfix:
+            new HarmonyMethod(Zone_Fishing.Postfix_AllowFishing));
+        harmony.Patch(AccessTools.Method("VCE_Fishing.Zone_Fishing:GetInspectString"), postfix:
+            new HarmonyMethod(Zone_Fishing.Postfix_GetInspectString));
     }
+
 
     /// <summary>
     ///     Logging function for the mod, prints the message with the appropriate method based on errorLevel, optionally

@@ -12,7 +12,8 @@ public class MouseoverReadout_MouseoverReadoutOnGUI
 {
     internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        var labelMaker = AccessTools.Method(typeof(MouseoverReadout_MouseoverReadoutOnGUI), "MakeLabelIfRequired");
+        var labelMaker =
+            AccessTools.Method(typeof(MouseoverReadout_MouseoverReadoutOnGUI), nameof(MakeLabelIfRequired));
         var BotLeft = AccessTools.Field(typeof(MouseoverReadout), "BotLeft");
         var codes = new List<CodeInstruction>(instructions);
         var num = 0;

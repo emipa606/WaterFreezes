@@ -19,4 +19,5 @@ La température est multipliée par cette valeur avant d'entrer dans d'autres ca
   <WFM.icedepth>Profondeur de la glace {0}</WFM.icedepth>
   <WFM.waterdepth>Profondeur de l'eau {0}</WFM.waterdepth>
   <WFM.naturalwater>Eau naturelle</WFM.naturalwater>
+  <WFM.frozen>Congelé, ne peut pas être pêché</WFM.frozen>
 </LanguageData>

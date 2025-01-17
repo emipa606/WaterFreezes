@@ -19,4 +19,5 @@
   <WFM.icedepth>冰层深度 {0}</WFM.icedepth>
   <WFM.waterdepth>水深 {0}</WFM.waterdepth>
   <WFM.naturalwater>天然水</WFM.naturalwater>
+  <WFM.frozen>冷冻，不能捕鱼</WFM.frozen>
 </LanguageData>

@@ -18,4 +18,6 @@ Die Temperatur wird mit diesem Wert multipliziert, bevor sie in andere Berechnun
   <WFM.oceansFreezeDesc>Wenn die Temperatur niedrig genug ist, kann auch das Meer gefrieren</WFM.oceansFreezeDesc>
   <WFM.icedepth>Eistiefe {0}</WFM.icedepth>
   <WFM.waterdepth>Wassertiefe {0}</WFM.waterdepth>
+  <WFM.naturalwater>Natürliches Wasser</WFM.naturalwater>
+  <WFM.frozen>Gefroren, kann nicht fischen</WFM.frozen>
 </LanguageData>
