@@ -30,6 +30,11 @@ internal static class Zone_Fishing
 
     private static bool isFrozen(Zone zone)
     {
+        if (!WaterFreezesSettings.FishingBlocked)
+        {
+            return false;
+        }
+
         var map = zone.Map;
         var comp = WaterFreezesCompCache.GetFor(map);
         if (comp is not { Initialized: true })

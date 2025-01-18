@@ -20,4 +20,6 @@ La température est multipliée par cette valeur avant d'entrer dans d'autres ca
   <WFM.waterdepth>Profondeur de l'eau {0}</WFM.waterdepth>
   <WFM.naturalwater>Eau naturelle</WFM.naturalwater>
   <WFM.frozen>Congelé, ne peut pas être pêché</WFM.frozen>
+  <WFM.fishingBlocked>La pêche est bloquée en cas de gel</WFM.fishingBlocked>
+  <WFM.fishingBlockedDesc>Lors de l'utilisation de Vanilla Fishing Expanded, les zones de pêche seront bloquées lorsqu'elles seront gelées.</WFM.fishingBlockedDesc>
 </LanguageData>

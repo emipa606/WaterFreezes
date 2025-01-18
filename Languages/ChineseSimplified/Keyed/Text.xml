@@ -20,4 +20,6 @@
   <WFM.waterdepth>水深 {0}</WFM.waterdepth>
   <WFM.naturalwater>天然水</WFM.naturalwater>
   <WFM.frozen>冷冻，不能捕鱼</WFM.frozen>
+  <WFM.fishingBlocked>冻结时捕鱼受阻</WFM.fishingBlocked>
+  <WFM.fishingBlockedDesc>在 "香草捕鱼扩展 "中使用时，冻结后的捕鱼区将被封锁</WFM.fishingBlockedDesc>
 </LanguageData>

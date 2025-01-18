@@ -20,4 +20,6 @@ Die Temperatur wird mit diesem Wert multipliziert, bevor sie in andere Berechnun
   <WFM.waterdepth>Wassertiefe {0}</WFM.waterdepth>
   <WFM.naturalwater>Natürliches Wasser</WFM.naturalwater>
   <WFM.frozen>Gefroren, kann nicht fischen</WFM.frozen>
+  <WFM.fishingBlocked>Der Fischfang ist in gefrorenem Zustand blockiert</WFM.fishingBlocked>
+  <WFM.fishingBlockedDesc>Bei der Verwendung von Vanilla Fishing Expanded werden die Fischereizonen blockiert, wenn sie eingefroren sind.</WFM.fishingBlockedDesc>
 </LanguageData>

@@ -42,6 +42,7 @@ public static class WaterFreezes
         };
 
     private static readonly Version version = Assembly.GetAssembly(typeof(WaterFreezes)).GetName().Version;
+    public static bool UsingVanillaFishingExpanded;
 
     /// <summary>
     ///     The assembly version of the mod.
@@ -60,6 +61,7 @@ public static class WaterFreezes
             return;
         }
 
+        UsingVanillaFishingExpanded = true;
         Log("Adding compatibility for Vanilla Fishing Expanded");
         harmony.Patch(AccessTools.Method("VCE_Fishing.Zone_Fishing:get_AllowFishing"), postfix:
             new HarmonyMethod(Zone_Fishing.Postfix_AllowFishing));

@@ -41,6 +41,12 @@ public class WaterFreezesMod : Mod
             ref WaterFreezesSettings.MoisturePumpClearsNaturalWater, "WFM.moisturePumpDesc".Translate());
         listingStandard.CheckboxLabeled("WFM.oceansFreeze".Translate(),
             ref WaterFreezesSettings.OceansFreeze, "WFM.oceansFreezeDesc".Translate());
+        if (WaterFreezes.UsingVanillaFishingExpanded)
+        {
+            listingStandard.CheckboxLabeled("WFM.fishingBlocked".Translate(),
+                ref WaterFreezesSettings.FishingBlocked, "WFM.fishingBlockedDesc".Translate());
+        }
+
         if (currentVersion != null)
         {
             listingStandard.Gap();
