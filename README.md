@@ -9,7 +9,7 @@ Update of UdderlyEvelyns mod https://steamcommunity.com/sharedfiles/filedetails/
 -  Watermills should now just stop when frozen and not break down
 -  There is now a mod-option to let oceans freeze (at very low temperatures)
 -  Freezing/Thawing should now be more spread out over time, should no longer cause lag/stutter
--  Added compatibility with [Vanilla Fishing Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=1914064942)
+-  Added compatibility with [Vanilla Fishing Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=1914064942), can be disabled
 
 
 

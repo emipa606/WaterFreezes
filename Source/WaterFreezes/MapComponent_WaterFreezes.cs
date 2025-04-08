@@ -162,8 +162,9 @@ public class MapComponent_WaterFreezes : MapComponent
         for (var i = 0; i < cellsPerTick; ++i)
         {
             var cellIndex = (lastUpdatedCellIndex + i) % totalCells;
-            var cell = map.cellIndices.IndexToCell(cellIndex);
-            var water = AllWaterTerrainGrid[cellIndex];
+            var cell = map.cellsInRandomOrder.Get(cellIndex);
+            var convertedCellIndex = map.cellIndices.CellToIndex(cell);
+            var water = AllWaterTerrainGrid[convertedCellIndex];
             if (water == null) // If it's water we track.
             {
                 continue;

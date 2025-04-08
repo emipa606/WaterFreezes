@@ -1,5 +1,8 @@
 # Changelog for WaterFreezes
 
+1.5.11 - Freezing effects are a bit more dymanic now
+
+
 1.5.10 - Added option to disable the Vanilla Fishing Expanded fishing blocked by frozen-compatibility
 Used DeepL to update translations for ChineseSimplified, French, German
 
