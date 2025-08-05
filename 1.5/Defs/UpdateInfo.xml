@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<TabulaRasa.UpdateDef Abstract="true" Name="WaterFreezes_UpdateInfoBase">
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3278128973</linkUrl>
+		<banner>UpdateInfo/WaterFreezes</banner>
+	</TabulaRasa.UpdateDef>
+	<TabulaRasa.UpdateDef ParentName="WaterFreezes_UpdateInfoBase" MayRequire="neronix17.toolbox">
+		<defName>WaterFreezes_1_5_11</defName>
+		<date>2025/8/5</date>
+		<content>This mod has been re-released for the new version of the game. This version will remain but will not be updated further.</content>
+	</TabulaRasa.UpdateDef>
+</Defs>
+
