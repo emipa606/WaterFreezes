@@ -8,8 +8,7 @@ namespace WF;
 
 public static class WaterFreezesStatCache
 {
-    private static readonly Dictionary<TerrainDef, TerrainExtension_WaterStats> extensionPerDef =
-        new Dictionary<TerrainDef, TerrainExtension_WaterStats>();
+    private static readonly Dictionary<TerrainDef, TerrainExtension_WaterStats> extensionPerDef = new();
 
     public static readonly HashSet<string> FreezableWater = [];
     public static readonly HashSet<string> ThawableIce = [];

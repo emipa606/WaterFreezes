@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Lake Ice -->
+  <WF_LakeIce.label>Lake Ice</WF_LakeIce.label>
+  <!-- EN: Lake Ice -->
+  <WF_LakeIceThick.label>Lake Ice</WF_LakeIceThick.label>
+  <!-- EN: Lake Ice -->
+  <WF_LakeIceThin.label>Lake Ice</WF_LakeIceThin.label>
+  <!-- EN: Marsh Ice -->
+  <WF_MarshIce.label>Marsh Ice</WF_MarshIce.label>
+  <!-- EN: Marsh Ice -->
+  <WF_MarshIceThin.label>Marsh Ice</WF_MarshIceThin.label>
+  <!-- EN: Ocean Ice -->
+  <WF_OceanIce.label>Ocean Ice</WF_OceanIce.label>
+  <!-- EN: Ocean Ice -->
+  <WF_OceanIceThick.label>Ocean Ice</WF_OceanIceThick.label>
+  <!-- EN: Ocean Ice -->
+  <WF_OceanIceThin.label>Ocean Ice</WF_OceanIceThin.label>
+  <!-- EN: River Ice -->
+  <WF_RiverIce.label>River Ice</WF_RiverIce.label>
+  <!-- EN: River Ice -->
+  <WF_RiverIceThick.label>River Ice</WF_RiverIceThick.label>
+  <!-- EN: River Ice -->
+  <WF_RiverIceThin.label>River Ice</WF_RiverIceThin.label>
+</LanguageData>

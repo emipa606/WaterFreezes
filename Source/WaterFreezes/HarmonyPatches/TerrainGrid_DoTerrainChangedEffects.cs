@@ -11,7 +11,7 @@ namespace WF;
 [HarmonyPatch(typeof(TerrainGrid), "DoTerrainChangedEffects")]
 public class TerrainGrid_DoTerrainChangedEffects
 {
-    public static readonly MethodInfo ListThing_get_Item =
+    private static readonly MethodInfo ListThing_get_Item =
         typeof(List<Thing>).GetMethod("get_Item", [typeof(int)]);
 
     internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

@@ -6,8 +6,7 @@ namespace WF;
 //This stores the comp on a per-map basis so that patches don't have to constantly retrieve it.
 public static class WaterFreezesCompCache
 {
-    public static readonly Dictionary<int, MapComponent_WaterFreezes> compCachePerMap =
-        new Dictionary<int, MapComponent_WaterFreezes>();
+    public static readonly Dictionary<int, MapComponent_WaterFreezes> compCachePerMap = new();
 
     public static MapComponent_WaterFreezes GetFor(Map map)
     {

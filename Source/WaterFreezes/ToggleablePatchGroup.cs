@@ -26,7 +26,7 @@ public class ToggleablePatchGroup : IToggleablePatch
     /// <summary>
     ///     Whether the patch group is presently applied.
     /// </summary>
-    public bool Applied { get; protected set; }
+    public bool Applied { get; private set; }
 
     /// <summary>
     ///     Apply the patch group's patches as possible and necessary.

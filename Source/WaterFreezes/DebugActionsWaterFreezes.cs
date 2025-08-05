@@ -15,7 +15,7 @@ public static class DebugActionsWaterFreezes
         ReinitializeMapComponent(Find.CurrentMap);
     }
 
-    public static void ReinitializeMapComponent(Map map)
+    private static void ReinitializeMapComponent(Map map)
     {
         var comp = WaterFreezesCompCache.GetFor(map);
         //Clear out any existing ice instantly so we aren't left with stuff a reinit can't comprehend.
@@ -54,7 +54,7 @@ public static class DebugActionsWaterFreezes
         DoForRect(SetAsNaturalWater);
     }
 
-    public static bool SetAsNaturalWater(Map map, IntVec3 cell, bool sendMessage = true)
+    private static bool SetAsNaturalWater(Map map, IntVec3 cell, bool sendMessage = true)
     {
         var index = map.cellIndices.CellToIndex(cell);
         var comp = WaterFreezesCompCache.GetFor(map);
@@ -91,7 +91,7 @@ public static class DebugActionsWaterFreezes
         DoForRect(ClearNaturalWaterStatus);
     }
 
-    public static bool ClearNaturalWaterStatus(Map map, IntVec3 cell, bool sendMessage = true)
+    private static bool ClearNaturalWaterStatus(Map map, IntVec3 cell, bool sendMessage = true)
     {
         var index = map.cellIndices.CellToIndex(cell);
         var comp = WaterFreezesCompCache.GetFor(map);
@@ -128,7 +128,7 @@ public static class DebugActionsWaterFreezes
         DoForRect(ClearNaturalWaterStatusAndDepth);
     }
 
-    public static bool ClearNaturalWaterStatusAndDepth(Map map, IntVec3 cell, bool sendMessage = true)
+    private static bool ClearNaturalWaterStatusAndDepth(Map map, IntVec3 cell, bool sendMessage = true)
     {
         var index = map.cellIndices.CellToIndex(cell);
         var comp = WaterFreezesCompCache.GetFor(map);
@@ -166,7 +166,7 @@ public static class DebugActionsWaterFreezes
         DoForRect(SetWaterDepthToMax);
     }
 
-    public static bool SetWaterDepthToMax(Map map, IntVec3 cell, bool sendMessage = true)
+    private static bool SetWaterDepthToMax(Map map, IntVec3 cell, bool sendMessage = true)
     {
         var comp = WaterFreezesCompCache.GetFor(map);
         var index = map.cellIndices.CellToIndex(cell);
@@ -200,7 +200,7 @@ public static class DebugActionsWaterFreezes
         DoForRect(SetWaterDepthToZero);
     }
 
-    public static bool SetWaterDepthToZero(Map map, IntVec3 cell, bool sendMessage = true)
+    private static bool SetWaterDepthToZero(Map map, IntVec3 cell, bool sendMessage = true)
     {
         var comp = WaterFreezesCompCache.GetFor(map);
         var index = map.cellIndices.CellToIndex(cell);
@@ -237,7 +237,7 @@ public static class DebugActionsWaterFreezes
         DoForRect(SetIceDepthToMax);
     }
 
-    public static bool SetIceDepthToMax(Map map, IntVec3 cell, bool sendMessage = true)
+    private static bool SetIceDepthToMax(Map map, IntVec3 cell, bool sendMessage = true)
     {
         var comp = WaterFreezesCompCache.GetFor(map);
         var index = map.cellIndices.CellToIndex(cell);
@@ -273,7 +273,7 @@ public static class DebugActionsWaterFreezes
         DoForRect(SetIceDepthToZero);
     }
 
-    public static bool SetIceDepthToZero(Map map, IntVec3 cell, bool sendMessage = true)
+    private static bool SetIceDepthToZero(Map map, IntVec3 cell, bool sendMessage = true)
     {
         var comp = WaterFreezesCompCache.GetFor(map);
         var index = map.cellIndices.CellToIndex(cell);
@@ -310,7 +310,7 @@ public static class DebugActionsWaterFreezes
         DoForRect(SetIceAndWaterDepthToZero);
     }
 
-    public static bool SetIceAndWaterDepthToZero(Map map, IntVec3 cell, bool sendMessage = true)
+    private static bool SetIceAndWaterDepthToZero(Map map, IntVec3 cell, bool sendMessage = true)
     {
         var comp = WaterFreezesCompCache.GetFor(map);
         var index = map.cellIndices.CellToIndex(cell);

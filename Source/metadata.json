@@ -3,12 +3,12 @@
   "CanAdd": "0",
   "CanRemove": "2",
   "SocialImageSet": true,
-  "PreviewVersion": "1.5",
+  "PreviewVersion": "1.6",
   "SearchTags": [
     "water",
     " freeze"
   ],
-  "LastXmlCleaning": "2025-04-08T20:22:59.0398088+02:00",
+  "LastXmlCleaning": "2025-08-05T22:32:24.1558931+02:00",
   "Patches": true,
   "Defs": true,
   "Assemblies": true,

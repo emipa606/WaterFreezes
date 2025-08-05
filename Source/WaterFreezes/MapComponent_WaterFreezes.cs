@@ -11,7 +11,7 @@ namespace WF;
 public class MapComponent_WaterFreezes : MapComponent
 {
     //Game lowercases all packageIDs pulled at runtime. -UdderlyEvelyn 3/27/22
-    public readonly List<string> BreakdownOrDestroyExceptedDefNames =
+    private readonly List<string> BreakdownOrDestroyExceptedDefNames =
     [
         "ludeon.rimworld.WaterproofConduit",
         "ludeon.rimworld.royalty.Shuttle",
@@ -24,7 +24,7 @@ public class MapComponent_WaterFreezes : MapComponent
         "somewhereoutinspace.spaceports.Spaceports_FuelProcessor"
     ];
 
-    public readonly List<string> BreakdownOrDestroyExceptedPlaceWorkerFailureReasons =
+    private readonly List<string> BreakdownOrDestroyExceptedPlaceWorkerFailureReasons =
     [
         "VPE_NeedsDistance".Translate(), //If it's a tidal generator trying to see if it's too close to itself.
         "WFFT_NeedsDistance".Translate(), //If it's a fish trap or fish net trying to see if it's too close to itself.
@@ -33,16 +33,16 @@ public class MapComponent_WaterFreezes : MapComponent
         "VME_NeedsDistance".Translate()
     ];
 
-    public readonly List<string> BreakdownOrDestroyExceptedPlaceWorkerTypeStrings = ["RimWorld.PlaceWorker_Conduit"];
+    private readonly List<string> BreakdownOrDestroyExceptedPlaceWorkerTypeStrings = ["RimWorld.PlaceWorker_Conduit"];
 
     private readonly int seasonLastUpdated = 0;
 
-    public readonly float ThresholdIce = 50;
+    private readonly float ThresholdIce = 50;
 
-    public readonly float ThresholdThickIce = 110;
+    private readonly float ThresholdThickIce = 110;
 
     //Ice thresholds of type by depth.
-    public readonly float ThresholdThinIce = .15f; //This is ratio of ice to water, unlike other thresholds.
+    private readonly float ThresholdThinIce = .15f; //This is ratio of ice to water, unlike other thresholds.
     public TerrainDef[] AllWaterTerrainGrid;
     public float[] IceDepthGrid;
     public bool Initialized;
@@ -109,7 +109,7 @@ public class MapComponent_WaterFreezes : MapComponent
         Initialized = true;
     }
 
-    public void InitializeNaturalWaterGrid()
+    private void InitializeNaturalWaterGrid()
     {
         NaturalWaterTerrainGrid = new TerrainDef[map.cellIndices.NumGridCells];
         for (var i = 0; i < map.cellIndices.NumGridCells; ++i)
@@ -185,7 +185,7 @@ public class MapComponent_WaterFreezes : MapComponent
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void UpdatePseudoWaterElevationGrid()
+    private void UpdatePseudoWaterElevationGrid()
     {
         WaterFreezes.Log("Updating pseudo water elevation grid.");
         for (var i = 0; i < AllWaterTerrainGrid.Length; ++i)
@@ -198,7 +198,7 @@ public class MapComponent_WaterFreezes : MapComponent
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void UpdatePseudoWaterElevationGridForCell(IntVec3 cell)
+    private void UpdatePseudoWaterElevationGridForCell(IntVec3 cell)
     {
         var i = map.cellIndices.CellToIndex(cell);
         var adjacentCells = GenAdjFast.AdjacentCells8Way(cell);
@@ -258,10 +258,7 @@ public class MapComponent_WaterFreezes : MapComponent
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void SetMaxWaterByDef(int i, TerrainDef water = null, bool updateIceStage = true)
     {
-        if (water == null) //Was not passed in.
-        {
-            water = AllWaterTerrainGrid[i]; //Get it.
-        }
+        water ??= AllWaterTerrainGrid[i];
 
         var extension = WaterFreezesStatCache.GetExtension(water);
         WaterDepthGrid[i] = extension.MaxWaterDepth;
@@ -272,15 +269,12 @@ public class MapComponent_WaterFreezes : MapComponent
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void UpdateIceForTemperature(IntVec3 cell, TerrainExtension_WaterStats extension = null)
+    private void UpdateIceForTemperature(IntVec3 cell, TerrainExtension_WaterStats extension = null)
     {
         var temperature = GenTemperature.GetTemperatureForCell(cell, map);
         var i = map.cellIndices.CellToIndex(cell);
         var water = AllWaterTerrainGrid[i];
-        if (extension == null) //If it wasn't passed in.
-        {
-            extension = WaterFreezesStatCache.GetExtension(water); //Get it.
-        }
+        extension ??= WaterFreezesStatCache.GetExtension(water);
 
         temperature -=
             extension.FreezingPoint; //Subtract the freezing point to adjust the temperature so that it acts like 0 is the configured value for ease of math keeping everything relative.
@@ -354,7 +348,7 @@ public class MapComponent_WaterFreezes : MapComponent
             var newWater = currentWater - iceChange;
             WaterDepthGrid[i] = newWater > 0 ? newWater : 0;
         }
-        else if (temperature > 0) //Temperature is above zero..
+        else if (temperature > 0) //Temperature is above zero.
         {
             if (!(currentIce >
                   0)) // && currentWater < extension.MaxWaterDepth This is the parallel check to the above one, but this shouldn't matter, and we should probably let ice keep melting either way.
@@ -388,15 +382,9 @@ public class MapComponent_WaterFreezes : MapComponent
         var iceDepth = IceDepthGrid[i];
         var waterDepth = WaterDepthGrid[i];
         var water = AllWaterTerrainGrid[i];
-        if (currentTerrain == null) //If it wasn't passed in.
-        {
-            currentTerrain = map.terrainGrid.TerrainAt(i); //Get it.
-        }
+        currentTerrain ??= map.terrainGrid.TerrainAt(i);
 
-        if (underTerrain == null) //If it wasn't passed in.
-        {
-            underTerrain = map.terrainGrid.UnderTerrainAt(i); //Get it.
-        }
+        underTerrain ??= map.terrainGrid.UnderTerrainAt(i);
 
         var appropriateTerrain = GetAppropriateTerrainFor(water, waterDepth, iceDepth, extension);
         if (appropriateTerrain != null)
@@ -422,7 +410,7 @@ public class MapComponent_WaterFreezes : MapComponent
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TerrainDef GetAppropriateTerrainFor(TerrainDef waterTerrain, float waterDepth, float iceDepth,
+    private TerrainDef GetAppropriateTerrainFor(TerrainDef waterTerrain, float waterDepth, float iceDepth,
         TerrainExtension_WaterStats extension = null)
     {
         var percentIce = iceDepth / (iceDepth + waterDepth);
@@ -458,7 +446,7 @@ public class MapComponent_WaterFreezes : MapComponent
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void CheckAndRefillCell(IntVec3 cell, TerrainExtension_WaterStats extension = null)
+    private void CheckAndRefillCell(IntVec3 cell, TerrainExtension_WaterStats extension = null)
     {
         if (cell.GetTemperature(map) <= 0) //If it's at or below freezing.
         {
@@ -468,10 +456,7 @@ public class MapComponent_WaterFreezes : MapComponent
         var i = map.cellIndices.CellToIndex(cell);
         var naturalWater = NaturalWaterTerrainGrid[i];
         var currentWater = WaterDepthGrid[i];
-        if (extension == null)
-        {
-            extension = WaterFreezesStatCache.GetExtension(naturalWater);
-        }
+        extension ??= WaterFreezesStatCache.GetExtension(naturalWater);
 
         if (naturalWater == null || !(currentWater < extension.MaxWaterDepth)) //If it's natural water.
         {
@@ -493,7 +478,7 @@ public class MapComponent_WaterFreezes : MapComponent
         WaterDepthGrid[i] = newWater < extension.MaxWaterDepth ? newWater : extension.MaxWaterDepth;
     }
 
-    public void BreakdownOrDestroyBuildingsInCellIfInvalid(IntVec3 cell)
+    private void BreakdownOrDestroyBuildingsInCellIfInvalid(IntVec3 cell)
     {
         var terrain = cell.GetTerrain(map);
         var things = cell.GetThingList(map);
@@ -515,7 +500,7 @@ public class MapComponent_WaterFreezes : MapComponent
 
             //WaterFreezes.Log($"Checking {thing.def.modContentPack.PackageId}.{thing.def.defName} for destruction..");
             //WaterFreezes.Log($"{thing.def.modContentPack.PackageId}.{thing.def.defName}");
-            if (thing.questTags is { Count: > 0 } || //If it's marked for a quest..
+            if (thing.questTags is { Count: > 0 } || //If it's marked for a quest.
                 thing.def.defName.StartsWith("Ancient") ||
                 thing.def.defName.StartsWith("VFEA_") || //If it's ancient stuff.
                 thing.def.modContentPack != null && BreakdownOrDestroyExceptedDefNames.Contains(

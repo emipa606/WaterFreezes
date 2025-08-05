@@ -3,14 +3,14 @@ using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
-using WF.Harmony_Patches;
+using Zone_Fishing = WF.Harmony_Patches.Zone_Fishing;
 
 namespace WF;
 
 [StaticConstructorOnStartup]
 public static class WaterFreezes
 {
-    [ToggleablePatch] public static ToggleablePatch<ThingDef> WatermillIsFlickablePatch = new ToggleablePatch<ThingDef>
+    [ToggleablePatch] public static ToggleablePatch<ThingDef> WatermillIsFlickablePatch = new()
     {
         Name = "Watermill Is Flickable",
         Enabled = true,
@@ -20,7 +20,7 @@ public static class WaterFreezes
     };
 
     [ToggleablePatch] public static ToggleablePatch<ThingDef> VPEAdvancedWatermillIsFlickablePatch =
-        new ToggleablePatch<ThingDef>
+        new()
         {
             Name = "VPE Advanced Watermill Is Flickable",
             Enabled = true,
@@ -31,7 +31,7 @@ public static class WaterFreezes
         };
 
     [ToggleablePatch] public static ToggleablePatch<ThingDef> VPETidalGeneratorIsFlickablePatch =
-        new ToggleablePatch<ThingDef>
+        new()
         {
             Name = "VPE Tidal Generator Is Flickable",
             Enabled = true,
@@ -42,12 +42,12 @@ public static class WaterFreezes
         };
 
     private static readonly Version version = Assembly.GetAssembly(typeof(WaterFreezes)).GetName().Version;
-    public static bool UsingVanillaFishingExpanded;
+    public static readonly bool UsingVanillaFishingExpanded;
 
     /// <summary>
     ///     The assembly version of the mod.
     /// </summary>
-    public static readonly string Version = $"{version.Major}.{version.Minor}.{version.Build}";
+    private static readonly string Version = $"{version.Major}.{version.Minor}.{version.Build}";
 
     static WaterFreezes()
     {

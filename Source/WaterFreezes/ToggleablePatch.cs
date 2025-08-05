@@ -9,14 +9,14 @@ namespace WF;
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
 public class ToggleablePatch : Attribute
 {
-    public static readonly bool AutoScan = true;
-    protected static bool _performedPatchScan;
+    private static readonly bool AutoScan = true;
+    private static bool _performedPatchScan;
     public static readonly Action<string> MessageLoggingMethod = Log.Message;
     public static Action<string> WarningLoggingMethod = Log.Warning;
     public static readonly Action<string> ErrorLoggingMethod = Log.Error;
-    public static readonly List<IToggleablePatch> Patches = [];
+    private static readonly List<IToggleablePatch> Patches = [];
 
-    public static void ScanForPatches()
+    private static void ScanForPatches()
     {
         if (_performedPatchScan)
         {
@@ -91,12 +91,12 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
     /// <summary>
     ///     List of conflicting mod IDs that this patch will not be applied if are present.
     /// </summary>
-    public readonly List<string> ConflictingModIDs = [];
+    private readonly List<string> ConflictingModIDs = [];
 
     /// <summary>
     ///     Cache variable for whether the mod that is targeted is installed.
     /// </summary>
-    protected bool? modInstalled;
+    private bool? modInstalled;
 
     /// <summary>
     ///     The patch code.
@@ -112,7 +112,7 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
     /// <summary>
     ///     Cache variable for the target def.
     /// </summary>
-    protected T targetDef;
+    private T targetDef;
 
     /// <summary>
     ///     The def name of the def targeted by this patch.
@@ -133,20 +133,20 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
     ///     Returns the target as a string in the form of ModID.DefName (DefType.FullName) with the "ModID." missing if no Mod
     ///     ID is assigned (e.g., it's Vanilla or unconditional).
     /// </summary>
-    public string TargetDescriptionString =>
+    private string TargetDescriptionString =>
         $"{(TargetModID != null ? $"{TargetModID}." : "")}{TargetDefName} ({typeof(T).FullName})";
 
     /// <summary>
     ///     Whether we can patch this, depends on whether the mod it comes from is installed (always true if it's from
     ///     vanilla).
     /// </summary>
-    public bool CanPatch
+    private bool CanPatch
     {
         get
         {
             foreach (var modID in ConflictingModIDs)
             {
-                if (ModLister.GetActiveModWithIdentifier(modID) == null) //If mod present.
+                if (ModLister.GetActiveModWithIdentifier(modID, true) == null) //If mod present.
                 {
                     continue;
                 }
@@ -161,10 +161,7 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
                 return true; //Return true if it had no target mod ID and no conflicting mods stopped it before now.
             }
 
-            if (!modInstalled.HasValue) //If mod presence is unknown.
-            {
-                modInstalled = ModLister.GetActiveModWithIdentifier(TargetModID) != null; //Check presence.
-            }
+            modInstalled ??= ModLister.GetActiveModWithIdentifier(TargetModID, true) != null;
 
             return modInstalled.Value; //Return true if it is installed, false if not.
         }
@@ -183,7 +180,7 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
     /// <summary>
     ///     Whether the patch is presently applied or not.
     /// </summary>
-    public bool Applied { get; protected set; }
+    public bool Applied { get; private set; }
 
     /// <summary>
     ///     Apply the patch if possible and necessary.
@@ -196,10 +193,7 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
             {
                 ToggleablePatch.MessageLoggingMethod(
                     $"[ToggleablePatch] {(Name != null ? $"Applying patch \"{Name}\", patching " : "Patching ")}{TargetDescriptionString}..");
-                if (targetDef == null)
-                {
-                    targetDef = DefDatabase<T>.GetNamedSilentFail(TargetDefName);
-                }
+                targetDef ??= DefDatabase<T>.GetNamedSilentFail(TargetDefName);
 
                 if (targetDef == null)
                 {
@@ -242,10 +236,7 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
         {
             ToggleablePatch.MessageLoggingMethod(
                 $"[ToggleablePatch] {(Name != null ? $"Removing patch \"{Name}\", unpatching " : "Unpatching ")}{TargetDescriptionString}..");
-            if (targetDef == null)
-            {
-                targetDef = DefDatabase<T>.GetNamed(TargetDefName);
-            }
+            targetDef ??= DefDatabase<T>.GetNamed(TargetDefName);
 
             try
             {

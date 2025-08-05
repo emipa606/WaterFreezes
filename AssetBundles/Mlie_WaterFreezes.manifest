@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 1040356533
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 768e6671ea424c3ab7aafd8084d19da0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2612ac43db082a73502ee80f2eceb73f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 768e6671ea424c3ab7aafd8084d19da0
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Mlie.WaterFreezes/Textures/MarshIceThin.png
+- Assets/Data/Mlie.WaterFreezes/Textures/MarshIce.png
+- Assets/Data/Mlie.WaterFreezes/Textures/IceThick.png
+- Assets/Data/Mlie.WaterFreezes/Textures/IceThin.png
+- Assets/Data/Mlie.WaterFreezes/Textures/Ice.png
+Dependencies: []
