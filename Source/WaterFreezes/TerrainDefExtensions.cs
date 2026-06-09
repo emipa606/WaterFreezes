@@ -9,39 +9,42 @@ public static class TerrainDefExtensions
 {
     private static readonly Dictionary<TerrainDef, bool> bridgeCache = new();
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsBridge(this TerrainDef def)
+    extension(TerrainDef def)
     {
-        if (!bridgeCache.ContainsKey(def))
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool IsBridge()
         {
-            bridgeCache[def] = def.bridge || def.label.ToLowerInvariant().Contains("bridge") ||
-                               def.defName.ToLowerInvariant().Contains("bridge");
+            if (!bridgeCache.ContainsKey(def))
+            {
+                bridgeCache[def] = def.bridge || def.label.ToLowerInvariant().Contains("bridge") ||
+                                   def.defName.ToLowerInvariant().Contains("bridge");
+            }
+
+            return bridgeCache[def];
         }
 
-        return bridgeCache[def];
-    }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool IsFreezableWater()
+        {
+            return WaterFreezesStatCache.FreezableWater.Contains(def.defName);
+        }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsFreezableWater(this TerrainDef def)
-    {
-        return WaterFreezesStatCache.FreezableWater.Contains(def.defName);
-    }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool IsThawableIce()
+        {
+            return WaterFreezesStatCache.ThawableIce.Contains(def.defName);
+        }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsThawableIce(this TerrainDef def)
-    {
-        return WaterFreezesStatCache.ThawableIce.Contains(def.defName);
-    }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool IsShallowDepth()
+        {
+            return def == TerrainDefOf.WaterShallow || def == TerrainDefOf.WaterMovingShallow;
+        }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsShallowDepth(this TerrainDef def)
-    {
-        return def == TerrainDefOf.WaterShallow || def == TerrainDefOf.WaterMovingShallow;
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsDeepDepth(this TerrainDef def)
-    {
-        return def == TerrainDefOf.WaterDeep || def == TerrainDefOf.WaterMovingChestDeep;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool IsDeepDepth()
+        {
+            return def == TerrainDefOf.WaterDeep || def == TerrainDefOf.WaterMovingChestDeep;
+        }
     }
 }

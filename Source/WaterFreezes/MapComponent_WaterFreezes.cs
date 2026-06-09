@@ -386,19 +386,22 @@ public class MapComponent_WaterFreezes : MapComponent
 
         underTerrain ??= map.terrainGrid.UnderTerrainAt(i);
 
-        var appropriateTerrain = GetAppropriateTerrainFor(water, waterDepth, iceDepth, extension);
-        if (appropriateTerrain != null)
+        if (!currentTerrain.IsBridge())
         {
-            if (underTerrain?.IsThawableIce() == true || currentTerrain.IsBridge())
+            var appropriateTerrain = GetAppropriateTerrainFor(water, waterDepth, iceDepth, extension);
+            if (appropriateTerrain != null)
             {
-                if (underTerrain == null || underTerrain != appropriateTerrain)
+                if (underTerrain?.IsThawableIce() == true)
                 {
-                    map.terrainGrid.SetUnderTerrain(cell, appropriateTerrain);
+                    if (underTerrain != appropriateTerrain)
+                    {
+                        map.terrainGrid.SetUnderTerrain(cell, appropriateTerrain);
+                    }
                 }
-            }
-            else if (currentTerrain != appropriateTerrain)
-            {
-                map.terrainGrid.SetTerrain(cell, appropriateTerrain);
+                else if (currentTerrain != appropriateTerrain)
+                {
+                    map.terrainGrid.SetTerrain(cell, appropriateTerrain);
+                }
             }
         }
 

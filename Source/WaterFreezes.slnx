@@ -6,4 +6,17 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="WaterFreezes/WaterFreezes.csproj" />
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Text.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/">
+    <File Path="../1.6/Defs/Terrain.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Patches/">
+    <File Path="../1.6/Patches/RFReworkIceFishable.xml" />
+    <File Path="../1.6/Patches/VanillaWaterSupport.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
 </Solution>
