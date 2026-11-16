@@ -41,20 +41,20 @@ public static class WaterFreezes
             Unpatch = (_, def) => { def.comps.RemoveAll(c => c is CompProperties_Flickable); }
         };
 
-    private static readonly Version version = Assembly.GetAssembly(typeof(WaterFreezes)).GetName().Version;
+    private static readonly Version version = Assembly.GetAssembly(typeof(WaterFreezes))?.GetName().Version;
     public static readonly bool UsingVanillaFishingExpanded;
 
     /// <summary>
     ///     The assembly version of the mod.
     /// </summary>
-    private static readonly string Version = $"{version.Major}.{version.Minor}.{version.Build}";
+    private static readonly string Version = $"{version!.Major}.{version.Minor}.{version.Build}";
 
     static WaterFreezes()
     {
         Log("Initializing.");
         ToggleablePatch.ProcessPatches("UdderlyEvelyn.WaterFreezes");
         var harmony = new Harmony("UdderlyEvelyn.WaterFreezes");
-        harmony.PatchAll();
+        harmony.PatchAll(Assembly.GetExecutingAssembly());
         WaterFreezesStatCache.Initialize();
         if (!ModLister.HasActiveModWithName("Vanilla Fishing Expanded"))
         {

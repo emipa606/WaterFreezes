@@ -381,9 +381,11 @@ public static class DebugActionsWaterFreezes
         var map = Find.CurrentMap;
         DebugTool tool = null;
         IntVec3 firstCorner;
+        var tool2 = tool;
         tool = new DebugTool("first corner.", delegate
         {
             firstCorner = UI.MouseCell();
+            var tool1 = tool2;
             DebugTools.curTool = new DebugTool("second corner.", delegate
             {
                 var failures = 0;
@@ -399,7 +401,7 @@ public static class DebugActionsWaterFreezes
                     cellCount++;
                 }
 
-                DebugTools.curTool = tool;
+                DebugTools.curTool = tool1;
                 Messages.Message(
                     failures > 0
                         ? $"There were {failures} failures to perform the requested operation on {cellCount} cells."

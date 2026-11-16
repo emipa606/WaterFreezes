@@ -8,7 +8,7 @@ using Verse;
 namespace WF;
 
 [HarmonyPatch(typeof(MouseoverReadout), nameof(MouseoverReadout.MouseoverReadoutOnGUI))]
-public class MouseoverReadout_MouseoverReadoutOnGUI
+public static class MouseoverReadout_MouseoverReadoutOnGUI
 {
     internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {

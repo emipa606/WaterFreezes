@@ -9,7 +9,7 @@ namespace WF;
 //This fixes issues with checking a blueprint that will build terrain while it's already placed in the spot causing an issue where it checks the terrain you're placing for affordances to place the terrain itself.
 //E.g., "building a bridge. terrain under it changes. bridge isn't bridgeable sorry gotta delete the blueprint!" no longer occurs.
 [HarmonyPatch(typeof(TerrainGrid), "DoTerrainChangedEffects")]
-public class TerrainGrid_DoTerrainChangedEffects
+public static class TerrainGrid_DoTerrainChangedEffects
 {
     private static readonly MethodInfo ListThing_get_Item =
         typeof(List<Thing>).GetMethod("get_Item", [typeof(int)]);

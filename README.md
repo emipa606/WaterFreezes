@@ -1,11 +1,11 @@
-# [Water Freezes (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3542918378)
+# [Water Freezes (Continued)]()
 
 ![Image](https://img.litet.net/logos/Info.png)
 
 Update of UdderlyEvelyns mod https://steamcommunity.com/sharedfiles/filedetails/?id=2728000958
 
-## NOTE: Do not use together with Odyssey as it has water-freezing included
-
+**The release of RimWorld 1.7 added a system where assets like textures and sounds can be cached to improve performance**.
+To avoid doubling the size of the mod, it was re-released with only this cache included, you can find the previous version of this mod [here](https://steamcommunity.com/sharedfiles/filedetails/?id=3542918378).
 
 **The release of RimWorld 1.6 added improved support for [Asset Bundles](https://github.com/emipa606/AssetBuilder/blob/main/README.md)**.
 To avoid doubling the size of the mod, it was re-released using only Asset Bundles, you can find the previous version of this mod [here](https://steamcommunity.com/sharedfiles/filedetails/?id=3278128973).
@@ -99,6 +99,4 @@ water freeze ice lake river ocean salt fresh thermodynamic simulation depth thic
 -  If you have the solution for a problem, please post it to the GitHub repository.
 -  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
-  | tags: water,  freeze 
-
-[![Image](https://img.shields.io/github/v/release/emipa606/WaterFreezes?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3542918378) | tags: water, freeze
+  | tags: water,  freeze  | freeze, water

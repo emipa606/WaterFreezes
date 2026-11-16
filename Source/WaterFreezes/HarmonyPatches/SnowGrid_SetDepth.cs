@@ -5,7 +5,7 @@ using HarmonyLib;
 
 namespace WF.Harmony_Patches;
 
-internal class SnowGrid_SetDepth
+internal static class SnowGrid_SetDepth
 {
     //This fixes bad performance when setting depth to zero by bypassing a ton of unnecessary checks.
     internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

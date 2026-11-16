@@ -94,11 +94,6 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
     private readonly List<string> ConflictingModIDs = [];
 
     /// <summary>
-    ///     Cache variable for whether the mod that is targeted is installed.
-    /// </summary>
-    private bool? modInstalled;
-
-    /// <summary>
     ///     The patch code.
     /// </summary>
     public Action<ToggleablePatch<T>, T> Patch;
@@ -108,11 +103,6 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
     ///     non-vanilla data in destructive patches.
     /// </summary>
     public object State;
-
-    /// <summary>
-    ///     Cache variable for the target def.
-    /// </summary>
-    private T targetDef;
 
     /// <summary>
     ///     The def name of the def targeted by this patch.
@@ -128,6 +118,16 @@ public class ToggleablePatch<T> : IToggleablePatch where T : Def
     ///     The unpatch code - this should undo the patch code completely.
     /// </summary>
     public Action<ToggleablePatch<T>, T> Unpatch;
+
+    /// <summary>
+    ///     Cache variable for whether the mod that is targeted is installed.
+    /// </summary>
+    private bool? modInstalled;
+
+    /// <summary>
+    ///     Cache variable for the target def.
+    /// </summary>
+    private T targetDef;
 
     /// <summary>
     ///     Returns the target as a string in the form of ModID.DefName (DefType.FullName) with the "ModID." missing if no Mod

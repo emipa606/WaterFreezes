@@ -1,37 +1,96 @@
 # GitHub Copilot Instructions for Water Freezes (Continued) Mod
 
 ## Mod Overview and Purpose
-The "Water Freezes (Continued)" mod for RimWorld enhances the environmental realism of the game by introducing dynamic water freezing and thawing mechanics. As a successor to UdderlyEvelyn's original mod, this version utilizes RimWorld 1.6's improved Asset Bundles support to minimize mod size and improve performance. Note that this mod should not be used alongside the Odyssey mod due to overlapping features.
+The Water Freezes (Continued) mod for RimWorld is an update to UdderlyEvelyn's original Water Freezes mod. This mod introduces the ability for lakes, marshes, rivers, and oceans to freeze when it is sufficiently cold outside. It provides a more realistic thermodynamic simulation for freezing and thawing processes while ensuring the game remains fast and smooth. The mod also adds compatibility with Vanilla Fishing Expanded, allowing players to fish through frozen lakes.
 
 ## Key Features and Systems
-- **Water Freezing:** Lakes, marshes, and rivers can freeze when temperatures drop. This affects gameplay by influencing available resources and altering terrain accessibility.
-- **Water and Ice Depth Tracking:** Tracks the thickness of water and ice, affecting melting and freezing rates with a relatively accurate thermodynamic simulation.
-- **Terrain Interaction:** Buildings on ice may break or be destroyed depending on their compatibility with water, impacting construction and resource management decisions.
-- **Digable Ice:** Players can dig ice for materials, impacting local environments and providing alternative cooling solutions, such as tribal freezers.
-- **Seasonal Dynamics:** Natural lakes refill in spring, contrasting with artificial bodies of water.
+### Freezing and Thawing
+- **Freezing Process**: Lakes, marshes, and rivers freeze when temperatures drop. The freezing process is realistic, with thicker ice melting slower than thinner ice.
+- **Thawing Process**: Ice melts gradually over time, preventing lag and stuttering.
+- **Thermodynamic Simulation**: The simulation estimates lake depth based on distance from land and calculates freezing from the outside in.
+
+### Building Interactions
+- **Buildings on Water/Ice**: Buildings that cannot exist on ice but can on water will break down when water freezes under them. Conversely, buildings that can exist on ice but are built on water will be destroyed when the terrain thaws.
+- **Bridges**: Buildings on bridges, including modded ones, are immune to freezing and thawing effects.
+
+### Natural Water Refill
+- **Natural Lakes**: Natural lakes refill in the spring if their ice is removed. Artificial lakes do not refill naturally.
+
+### Debug Tools
+- **Clear Natural Water Status**: Clears the natural water status of a cell.
+- **Reinitialize Map Component**: Reinitializes the map component to remove all ice.
+
+### Compatibility
+- **Soil Relocation Framework**: Interoperates with Soil Relocation Framework.
+- **Vanilla Fishing Expanded**: Allows fishing through frozen lakes.
+- **Multiplayer Mod**: Works with the Multiplayer mod.
+- **Terrain System Overhaul**: Compatible with Terrain System Overhaul.
+- **Terraforming Mods**: Natural water terrain will revert if altered by terraforming mods.
 
 ## Coding Patterns and Conventions
-- The mod adheres to established C# coding conventions relevant to RimWorld modding, ensuring maintainability and compatibility.
-- A clear separation of concerns is observed in C# files, with functionalities organized according to gameplay features.
-- The project includes debug tools for mod testing, aiding in development and user support.
+### C# Files
+- **DebugActionsWaterFreezes.cs**: Contains debug actions for clearing natural water status, setting ice and water depth, and reinitializing the map component.
+- **Defs/IceDefs.cs**: Defines ice-related definitions.
+- **Defs/WaterDefs.cs**: Defines water-related definitions.
+- **ErrorLevel.cs**: Manages error levels for debugging purposes.
+- **HarmonyPatches/CompTerrainPumpDry_AffectCell.cs**: Contains harmony patches for the `CompTerrainPumpDry_AffectCell` class.
+
+### XML Files
+- **Terrain.xml**: Defines terrain-related definitions.
+- **RFReworkIceFishable.xml**: Patches for Soil Relocation Framework.
+- **VanillaWaterSupport.xml**: Patches for Vanilla Fishing Expanded.
 
 ## XML Integration
-- The mod utilizes several XML files to define in-game terrain meta information and compatibility patches.
-- XML files provide foundational data for water and ice types, as well as temperature thresholds for freezing and thawing events.
-- Custom TerrainDefs are defined to integrate seamlessly with RimWorld's existing mechanics, providing a robust base for feature development.
+The mod uses XML files to define terrain, ice, and water-related definitions. The XML files are located in the `Defs` directory and are used to integrate with the game's existing systems.
+
+Example XML snippet:
+xml
+<TerrainDef>
+    <defName>Ice</defName>
+    <label>Ice</label>
+    <description>Covered with a layer of frozen water.</description>
+    <graphicData>
+        <texPath>Things/Terrain/Ice</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+        <statDef>WalkSpeed</statDef>
+        <value>0.33</value>
+    </statBases>
+</TerrainDef>
+
 
 ## Harmony Patching
-- Harmony is used to patch existing game functions, allowing for modifications and new behaviors without altering core game files.
-- **CompTerrainPumpDry_AffectCell:** This includes both prefix and postfix patches to manage terrain interactions when temperature changes affect water or ice.
+The mod uses Harmony patching to modify the behavior of existing classes and methods. Harmony patches are located in the `HarmonyPatches` directory and are used to add, remove, or replace code in the game's assemblies.
+
+Example Harmony patch:
+csharp
+[HarmonyPatch(typeof(CompTerrainPumpDry), "AffectCell")]
+public static class CompTerrainPumpDry_AffectCell_Patch
+{
+    public static void Postfix(CompTerrainPumpDry __instance, IntVec3 c)
+    {
+        // Custom code to handle freezing and thawing
+    }
+}
+
 
 ## Suggestions for Copilot
-- **XML Assistance:** Utilize Copilot to help generate new TerrainDefs or modify existing ones through structured XML editing as new features are developed.
-- **C# Debug Tools:** Refine the debug functionalities by automating repetitive tasks or complex setup scenarios.
-- **Harmony Patch Development:** Assist in creating new patches for additional game interactions with water freezing, especially concerning unplanned or mod-incompatible buildings on ice.
-- **Efficiency Improvements:** Suggest code optimizations and improvements based on existing coding patterns to ensure the mod runs efficiently.
+### C# Development
+- **Debug Actions**: Use Copilot to generate debug actions for managing natural water status, setting ice and water depth, and reinitializing the map component.
+- **Harmony Patches**: Use Copilot to generate harmony patches for existing classes and methods, ensuring compatibility with the game's updates.
+- **Terrain and Water Definitions**: Use Copilot to generate XML definitions for terrain, ice, and water-related entities.
 
-## Conclusion
-The "Water Freezes (Continued)" mod is a comprehensive update showcasing dynamic environmental changes in RimWorld. With detailed systems supporting community-driven playstyles, it leverages Asset Bundles and Harmony patches effectively. GitHub Copilot can significantly aid in maintaining and expanding these systems, streamlining development and enhancing user experience.
+### XML Integration
+- **Terrain Definitions**: Use Copilot to create XML snippets for defining new terrain types, such as ice and frozen water.
+- **Patches**: Use Copilot to generate XML patches for modifying existing terrain and water behaviors.
+
+### General Suggestions
+- **Code Formatting**: Ensure that all generated code adheres to the RimWorld coding conventions, including proper naming conventions and indentation.
+- **Testing**: After generating code, thoroughly test the mod to ensure compatibility and functionality.
+- **Documentation**: Update the mod's documentation to reflect any new features or changes made using Copilot.
+
+By following these guidelines, developers can effectively utilize GitHub Copilot to enhance the Water Freezes (Continued) mod, ensuring a realistic and enjoyable freezing and thawing experience in RimWorld.
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -45,4 +104,6 @@ The "Water Freezes (Continued)" mod is a comprehensive update showcasing dynamic
 ## Hard rules (must follow)
 - Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
 - Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
 

@@ -4,7 +4,7 @@ using Verse;
 namespace WF;
 
 [HarmonyPatch(typeof(TerrainGrid), nameof(TerrainGrid.SetTerrain))]
-public class TerrainGrid_SetTerrain
+public static class TerrainGrid_SetTerrain
 {
     //This updates the AllWaterTerrainGrid when terrain is changed to be which water type it is, or null, depending on the old/new terrain (with exception for if it's natural water preventing nulling).
     internal static void Prefix(IntVec3 c, TerrainDef newTerr, Map ___map, ref TerrainDef __state)

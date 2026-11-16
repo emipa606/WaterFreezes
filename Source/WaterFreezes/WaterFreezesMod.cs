@@ -7,11 +7,11 @@ namespace WF;
 public class WaterFreezesMod : Mod
 {
     public static string currentVersion;
+    public WaterFreezesSettings Settings;
     private string _freezingMultiplierBuffer;
 
     private string _iceRateBuffer;
     private string _thawingDivisorBuffer;
-    public WaterFreezesSettings Settings;
 
     public WaterFreezesMod(ModContentPack content) : base(content)
     {

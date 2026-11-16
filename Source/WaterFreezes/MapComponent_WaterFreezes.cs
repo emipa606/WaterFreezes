@@ -35,24 +35,24 @@ public class MapComponent_WaterFreezes : MapComponent
 
     private readonly List<string> BreakdownOrDestroyExceptedPlaceWorkerTypeStrings = ["RimWorld.PlaceWorker_Conduit"];
 
-    private readonly int seasonLastUpdated = 0;
-
     private readonly float ThresholdIce = 50;
 
     private readonly float ThresholdThickIce = 110;
 
     //Ice thresholds of type by depth.
     private readonly float ThresholdThinIce = .15f; //This is ratio of ice to water, unlike other thresholds.
+
+    private readonly int seasonLastUpdated = 0;
     public TerrainDef[] AllWaterTerrainGrid;
     public float[] IceDepthGrid;
     public bool Initialized;
-    private int lastUpdatedCellIndex;
     public TerrainDef[] NaturalWaterTerrainGrid;
     public float[] PseudoWaterElevationGrid;
+    public float[] WaterDepthGrid;
+    private int lastUpdatedCellIndex;
 
     //Caching for season since it's apparently expensive and why get it more than once a day.
     private Season season;
-    public float[] WaterDepthGrid;
 
     public MapComponent_WaterFreezes(Map map) : base(map)
     {
@@ -501,8 +501,6 @@ public class MapComponent_WaterFreezes : MapComponent
                 continue;
             }
 
-            //WaterFreezes.Log($"Checking {thing.def.modContentPack.PackageId}.{thing.def.defName} for destruction..");
-            //WaterFreezes.Log($"{thing.def.modContentPack.PackageId}.{thing.def.defName}");
             if (thing.questTags is { Count: > 0 } || //If it's marked for a quest.
                 thing.def.defName.StartsWith("Ancient") ||
                 thing.def.defName.StartsWith("VFEA_") || //If it's ancient stuff.
@@ -534,7 +532,6 @@ public class MapComponent_WaterFreezes : MapComponent
                         continue; //Don't destroy for this particular reason, irrelevant.
                     }
 
-                    //Log.Message("PlaceWorker failed with reason: " + acceptanceReport.Reason);
                     shouldBreakdownOrDestroy = true;
                     break; //We don't need to check more if we've found a reason to not be here.
                 }
@@ -555,7 +552,8 @@ public class MapComponent_WaterFreezes : MapComponent
             if (!shouldBreakdownOrDestroy)
             {
                 if (thing.TryGetComp(out waterPlant) &&
-                    !(bool)AccessTools.Field(typeof(CompPowerPlantWater), "waterUsable").GetValue(waterPlant))
+                    !(bool)(AccessTools.Field(typeof(CompPowerPlantWater), "waterUsable").GetValue(waterPlant) ??
+                            false))
                 {
                     AccessTools.Method(typeof(CompPowerPlantWater), "RebuildCache").Invoke(waterPlant, []);
                 }

@@ -6,7 +6,7 @@ namespace WF;
 
 //This has the moisture pump mark terrain as not natural water anymore.
 [HarmonyPatch(typeof(CompTerrainPumpDry), nameof(CompTerrainPumpDry.AffectCell), typeof(Map), typeof(IntVec3))]
-public class CompTerrainPumpDry_AffectCell
+public static class CompTerrainPumpDry_AffectCell
 {
     internal static void Prefix(Map map, IntVec3 c, ref TerrainDef __state)
     {
