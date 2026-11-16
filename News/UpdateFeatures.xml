@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<HugsLib.UpdateFeatureDef Abstract="true" Name="WaterFreezes_UpdateFeatureBase">
+		<modNameReadable>WaterFreezes</modNameReadable>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3542918378</linkUrl>
+	</HugsLib.UpdateFeatureDef>
+	<HugsLib.UpdateFeatureDef ParentName="WaterFreezes_UpdateFeatureBase">
+		<defName>WaterFreezes_1_6_1</defName>
+		<assemblyVersion>1.6.1</assemblyVersion>
+		<content>This mod has been re-released for the new version of the game. This version will remain but will not be updated further.</content>
+	</HugsLib.UpdateFeatureDef>
+</Defs>
+
